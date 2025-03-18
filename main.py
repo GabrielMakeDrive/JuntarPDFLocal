@@ -9,14 +9,16 @@ class PDFMergerApp:
         self.root.title("Juntador de PDF")
         self.root.geometry("600x450")
         self.root.resizable(False, False)
-        self.root.configure(bg="#f0f0f0")
+        self.root.configure(bg="#f7f9f9")
         
-        # Colors
-        self.primary_color = "#4361ee"
-        self.secondary_color = "#3f37c9"
-        self.accent_color = "#4cc9f0"
-        self.bg_color = "#f0f0f0"
-        self.text_color = "#333333"
+        # Colors - Updated for better aesthetics
+        self.primary_color = "#2a9d8f"  # Teal
+        self.secondary_color = "#264653"  # Dark blue-green
+        self.accent_color = "#e9c46a"  # Gold/amber
+        self.bg_color = "#f7f9f9"  # Very light gray with blue tint
+        self.text_color = "#2b2d42"  # Dark blue-gray
+        self.button_bg = "#ffffff"  # White for button backgrounds
+        self.button_hover = "#e8f4f2"  # Light teal for hover state
         
         # Store selected PDF file paths
         self.pdf_files = []
@@ -51,7 +53,7 @@ class PDFMergerApp:
             text="Selecione os arquivos", 
             font=("Helvetica", 10, "bold"),
             bg=self.bg_color,
-            fg=self.text_color,
+            fg=self.primary_color,
             padx=15, 
             pady=15
         )
@@ -73,7 +75,8 @@ class PDFMergerApp:
             relief=tk.GROOVE,
             font=("Helvetica", 9),
             bg="white",
-            selectbackground=self.accent_color
+            selectbackground=self.primary_color,
+            selectforeground="white"
         )
         self.files_listbox.pack(side="left", fill="both", expand=True)
         
@@ -89,13 +92,15 @@ class PDFMergerApp:
             buttons_frame,
             text="Adicionar PDF",
             command=self.add_pdf,
-            bg=self.accent_color,
-            fg="white",
-            activebackground=self.primary_color,
-            activeforeground="white",
+            bg=self.button_bg,
+            fg=self.primary_color,
+            activebackground=self.button_hover,
+            activeforeground=self.secondary_color,
             width=15,
             bd=1,
-            pady=5
+            pady=5,
+            relief=tk.RIDGE,
+            cursor="hand2"
         )
         add_button.pack(pady=5)
         
@@ -103,13 +108,15 @@ class PDFMergerApp:
             buttons_frame,
             text="Remover PDF",
             command=self.remove_pdf,
-            bg=self.accent_color,
-            fg="white",
-            activebackground=self.primary_color,
-            activeforeground="white",
+            bg=self.button_bg,
+            fg=self.primary_color,
+            activebackground=self.button_hover,
+            activeforeground=self.secondary_color,
             width=15,
             bd=1,
-            pady=5
+            pady=5,
+            relief=tk.RIDGE,
+            cursor="hand2"
         )
         remove_button.pack(pady=5)
         
@@ -117,13 +124,15 @@ class PDFMergerApp:
             buttons_frame,
             text="↑ Mover para Cima",
             command=self.move_pdf_up,
-            bg=self.accent_color,
-            fg="white",
-            activebackground=self.primary_color,
-            activeforeground="white",
+            bg=self.button_bg,
+            fg=self.primary_color,
+            activebackground=self.button_hover,
+            activeforeground=self.secondary_color,
             width=15,
             bd=1,
-            pady=5
+            pady=5,
+            relief=tk.RIDGE,
+            cursor="hand2"
         )
         move_up_button.pack(pady=5)
         
@@ -131,13 +140,15 @@ class PDFMergerApp:
             buttons_frame,
             text="↓ Mover para Baixo",
             command=self.move_pdf_down,
-            bg=self.accent_color,
-            fg="white",
-            activebackground=self.primary_color,
-            activeforeground="white",
+            bg=self.button_bg,
+            fg=self.primary_color,
+            activebackground=self.button_hover,
+            activeforeground=self.secondary_color,
             width=15,
             bd=1,
-            pady=5
+            pady=5,
+            relief=tk.RIDGE,
+            cursor="hand2"
         )
         move_down_button.pack(pady=5)
         
@@ -145,16 +156,16 @@ class PDFMergerApp:
         action_frame = tk.Frame(main_frame, bg=self.bg_color)
         action_frame.pack(fill="x", pady=15)
         
-        # Merge button
+        # Merge button - main action button with accent color
         merge_button = tk.Button(
             action_frame, 
             text="Juntar PDFs", 
             command=self.merge_pdfs,
-            bg=self.primary_color, 
-            fg="white", 
+            bg=self.accent_color, 
+            fg=self.secondary_color, 
             font=("Helvetica", 12, "bold"),
-            activebackground=self.secondary_color,
-            activeforeground="white",
+            activebackground="#f4d58d",
+            activeforeground=self.secondary_color,
             relief=tk.RAISED,
             bd=2,
             padx=20,
@@ -171,7 +182,7 @@ class PDFMergerApp:
             status_frame, 
             text="Pronto para juntar arquivos PDF",
             bg=self.bg_color,
-            fg="#666666",
+            fg=self.secondary_color,
             font=("Helvetica", 8)
         )
         self.status_label.pack(side="left")
@@ -181,7 +192,7 @@ class PDFMergerApp:
             status_frame,
             text="0 arquivos selecionados",
             bg=self.bg_color,
-            fg="#666666",
+            fg=self.secondary_color,
             font=("Helvetica", 8)
         )
         self.counter_label.pack(side="right")
